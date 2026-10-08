@@ -1,0 +1,410 @@
+/* 공통 크기 계산과 따뜻한 카페 색상 */
+:root {
+  --cafe-beige: #faf6f0;
+  --cafe-brown: #6b4226;
+  --cafe-border: #dfcfc1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 16px;
+  background: var(--cafe-beige);
+  color: #49372b;
+  font-family: '맑은 고딕', sans-serif;
+  line-height: 1.6;
+}
+
+/* 제목과 주문서를 최대 520px 너비로 가운데 정렬 */
+header,
+main {
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  color: var(--cafe-brown);
+  font-size: clamp(24px, 6vw, 30px);
+  line-height: 1.4;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.cafe-logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+header p {
+  margin: 0;
+  color: #806652;
+}
+
+main {
+  padding: 28px;
+  border: 1px solid #eadfd4;
+  border-radius: 20px;
+  background: #fffdf9;
+  box-shadow: 0 8px 28px rgba(107, 66, 38, 0.1);
+}
+
+/* 일반 입력 항목은 라벨 아래에 넓게 배치 */
+#order-form > div {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+label,
+legend {
+  color: var(--cafe-brown);
+  font-weight: 700;
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='number'],
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--cafe-border);
+  border-radius: 8px;
+  background: #fff;
+  color: #49372b;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+/* 입력 중인 항목에 갈색 테두리와 연한 그림자 표시 */
+input[type='text']:focus,
+input[type='tel']:focus,
+input[type='number']:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--cafe-brown);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 66, 38, 0.14);
+}
+
+/* HTML 변경 없이 입력과 라벨을 두 칸씩 묶어 가로 배치 */
+fieldset {
+  display: grid;
+  grid-template-columns: repeat(3, auto minmax(0, 1fr));
+  align-items: center;
+  gap: 12px 8px;
+  min-width: 0;
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid var(--cafe-border);
+  border-radius: 12px;
+  background: var(--cafe-beige);
+}
+
+fieldset:last-of-type {
+  grid-template-columns: repeat(2, auto minmax(0, 1fr));
+}
+
+legend {
+  padding: 0 6px;
+}
+
+fieldset label {
+  font-size: 14px;
+  font-weight: 400;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--cafe-brown);
+  cursor: pointer;
+}
+
+/* 예상 금액을 눈에 잘 띄도록 강조 */
+#estimated-total {
+  margin: 24px 0 20px;
+  padding: 16px 8px;
+  border-radius: 12px;
+  background: var(--cafe-beige);
+  color: var(--cafe-brown);
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* 주문 버튼과 다시 작성 버튼 */
+button {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 16px;
+  border: 1px solid var(--cafe-brown);
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#submit-order {
+  background: var(--cafe-brown);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(107, 66, 38, 0.16);
+}
+
+#submit-order:hover {
+  background: #805333;
+}
+
+#reset-order {
+  margin-top: 10px;
+  background: #fff;
+  color: var(--cafe-brown);
+}
+
+#reset-order:hover {
+  background: var(--cafe-beige);
+}
+
+/* 키보드로 이동할 때도 현재 선택 위치 표시 */
+button:focus-visible,
+input[type='radio']:focus-visible,
+input[type='checkbox']:focus-visible {
+  outline: 2px solid var(--cafe-brown);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(107, 66, 38, 0.14);
+}
+
+/* 주문 완료 안내 */
+#order-confirmation {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid #c5dfb5;
+  border-radius: 12px;
+  background: #edf7e6;
+  color: #2f622f;
+  overflow-wrap: anywhere;
+}
+
+/* 두 탭을 같은 너비로 나누고, 선택한 탭 아래에 갈색 줄 표시 */
+.tab-menu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 24px;
+  border-bottom: 1px solid var(--cafe-border);
+}
+
+.tab-button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 8px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #9a7b64;
+}
+
+.tab-button.active {
+  border-bottom-color: var(--cafe-brown);
+  color: var(--cafe-brown);
+}
+
+.tab-button:hover {
+  background: rgba(107, 66, 38, 0.05);
+}
+
+/* 주문 건수는 짧은 숫자는 원형으로, 긴 숫자는 둥근 모양으로 표시 */
+.order-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  min-height: 26px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--cafe-brown);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 주문 목록은 카드 사이에 일정한 간격을 둠 */
+#orders-list {
+  display: grid;
+  gap: 14px;
+}
+
+/* 취소 버튼의 자리를 따로 나누어 긴 이름도 버튼과 겹치지 않음 */
+.order-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 6px 12px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #eadfd4;
+  border-left: 4px solid var(--cafe-brown);
+  border-radius: 12px;
+  background: var(--cafe-beige);
+}
+
+.order-card p {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.order-title {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  color: var(--cafe-brown);
+  font-weight: 700;
+}
+
+.order-details,
+.order-meta {
+  grid-column: 1 / -1;
+}
+
+.order-details {
+  font-size: 14px;
+}
+
+.order-meta {
+  color: #806652;
+  font-size: 13px;
+  white-space: pre-line;
+}
+
+.cancel-order {
+  grid-column: 2;
+  grid-row: 1;
+  width: auto;
+  min-height: 36px;
+  padding: 6px 10px;
+  background: #fffdf9;
+  color: var(--cafe-brown);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.cancel-order:hover,
+#clear-orders:hover {
+  background: #f1e6da;
+}
+
+/* 합계와 모두 지우기 버튼은 목록 아래에 배치 */
+.orders-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--cafe-border);
+}
+
+#orders-total {
+  min-width: 0;
+  margin: 0;
+  color: var(--cafe-brown);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+#clear-orders {
+  width: auto;
+  background: #fffdf9;
+  color: var(--cafe-brown);
+  font-size: 14px;
+}
+
+.empty-orders {
+  margin: 0;
+  padding: 40px 8px;
+  color: #806652;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* 숨김 클래스와 HTML의 숨김 속성을 모두 지원 */
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/* 휴대폰에서는 여백을 줄이고 선택 항목을 두 개씩 배치 */
+@media (max-width: 480px) {
+  body {
+    padding: 28px 12px;
+  }
+
+  main {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  fieldset {
+    grid-template-columns: repeat(2, auto minmax(0, 1fr));
+    padding: 12px;
+  }
+
+  /* 휴대폰에서는 카드 여백을 줄이고 모두 지우기 버튼을 넓게 표시 */
+  .order-card {
+    gap: 6px 8px;
+    padding: 14px;
+  }
+
+  #clear-orders {
+    width: 100%;
+  }
+}
+
+/* 아주 좁은 화면에서는 선택 항목을 한 개씩 배치 */
+@media (max-width: 340px) {
+  fieldset,
+  fieldset:last-of-type {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+}
+
+/* 움직임을 줄이는 사용자 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  input,
+  select,
+  textarea,
+  button {
+    transition: none;
+  }
+}
